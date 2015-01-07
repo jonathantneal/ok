@@ -1,0 +1,7 @@
+manual/*
+note/*
+project/*
+
+!manual/ok.txt
+!note/ok.txt
+!project/ok.sh
