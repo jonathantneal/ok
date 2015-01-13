@@ -1,4 +1,1 @@
-declare app=com.google.Chrome
-declare var=${local:-$@}
-
-_app
+eval "open -b com.google.Chrome \$${1:-local} ${@:2}"

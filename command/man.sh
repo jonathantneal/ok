@@ -1,25 +1,27 @@
-# man [project] [value]
+if ! test -f $PROJECT_FILE; then
+	shift
+fi
 
-declare txt="$ok_dir/manual/${project_name:-$1}.txt"
-
-if [ -z "$project_name" ] || [ $# -eq 0 ]; then
-	if test -f $txt; then
-		cat $txt
+if [ -z "$1" ]; then
+	if test -f $MANUAL_FILE; then
+		cat $MANUAL_FILE
 	else
-		echo "There is no '$project_name' manual."
+		echo "There is no '$PROJECT' manual."
 	fi
 else
-	if [ "$1" = "-" ]; then
-		read "R?Clear the '$project_name' manual? [y/n] "
+	if [[ "$1" =~ ^[+-] ]]; then
+		if [ "+" = "$1" ]; then
+			$EDITOR $MANUAL_FILE
+		elif test -f $MANUAL_FILE; then
+			local R
 
-		if [[ "$R" =~ ^[Yy] ]]; then
-			rm $txt
+			if read "R?Delete '$PROJECT' manual? [y/n] " && [[ "$R" =~ ^[Yy] ]]; then
+				rm $MANUAL_FILE
+			fi
+		else
+			echo "There is no '$PROJECT' manual."
 		fi
-	elif [[ "$1" = "+" ]]; then
-		$ok_editor $txt
 	else
-		touch $txt
-
-		echo $@ >> $txt
+		touch $MANUAL_FILE && echo "$@" >> $MANUAL_FILE
 	fi
 fi

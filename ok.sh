@@ -1,12 +1,20 @@
+#!/bin/bash
+# ok: a script for making super fast bash shortcuts.
+
 function ok {
-	declare ok_editor=vi
-	declare ok_dir=$(cd ~/.ok;pwd)
+	local EDITOR="vi"
+	local DIRECTORY="$(cd ~/.ok;pwd)"
+	local COMMAND="$1"
+	local PROJECT="$2"
+	local MANUAL_FILE="$DIRECTORY/manual/${2:-ok}.txt"
+	local COMMAND_FILE="$DIRECTORY/command/$COMMAND.sh"
+	local PROJECT_FILE="$DIRECTORY/project/$PROJECT.sh"
+	local COMMAND_SCRIPT
+	local PROJECT_SCRIPT
 
-	function _fetch {
-		declare ok_cfg="$ok_dir/$1.sh"
-
-		if test -f $ok_cfg; then
-			declare -g $2="$(cat $ok_cfg)"
+	function READ {
+		if test -f $1; then
+			declare -g "$2"="$(cat $1)"
 
 			return 0
 		fi
@@ -14,36 +22,19 @@ function ok {
 		return 1
 	}
 
-	function _app {
-		if [ ! -z "$@" ]; then
-			eval declare var=\$$1
+	if [ ! -z "$COMMAND" ] && READ $COMMAND_FILE COMMAND_SCRIPT; then
+		shift
 
-			if [ "$var" = '$'"$1" ]; then
-				var=$1
-			fi
+		if [ ! -z "$PROJECT" ] && READ $PROJECT_FILE PROJECT_SCRIPT; then
+			shift
+
+			eval "$PROJECT_SCRIPT"
 		fi
 
-		open -b $app $var
-	}
-
-	# require arguments
-	if [ $# -gt 0 ]; then
-		# if command is a function
-		if _fetch "command/$1" cmd; then
-			declare cmd_name="$1"
-
-			# if parameter is a project
-			if [ $# -gt 1 ] && _fetch "project/$2" project; then
-				declare project_name="$2"
-
-				shift; shift; eval "$project; $cmd"
-
-			# otherwise run command with parameter
-			else
-				shift; eval "$cmd"
-			fi
-		fi
+		eval "$COMMAND_SCRIPT"
 	else
-		cat $ok_dir/manual/ok.txt
+		cat $MANUAL_FILE
 	fi
+
+	return 0
 }

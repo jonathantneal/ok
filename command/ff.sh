@@ -1,4 +1,1 @@
-declare app=org.mozilla.firefox
-declare var=${local:-$@}
-
-_app
+eval "open -b org.mozilla.firefox \$${1:-local} ${@:2}"

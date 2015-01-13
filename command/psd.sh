@@ -1,4 +1,1 @@
-declare app=com.adobe.Photoshop
-declare var=${psd:-$@}
-
-_app
+eval "open -b com.adobe.Photoshop \$${1:-psd} ${@:2}"

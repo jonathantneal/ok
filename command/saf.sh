@@ -1,4 +1,1 @@
-declare app=com.apple.Safari
-declare var=${local:-$@}
-
-_app
+eval "open -b com.apple.Safari \$${1:-local} ${@:2}"

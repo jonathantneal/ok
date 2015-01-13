@@ -1,31 +1,29 @@
-# set [project] [value]
-
-declare txt="$ok_dir/project/${project_name:-$1}.sh"
-
-if [ -z "$project_name" ]; then
-	declare project_name=$1
-
+if ! test -f $PROJECT_FILE; then
 	shift
 fi
 
-if [ $# -eq 0 ]; then
-	if test -f $txt; then
-		cat $txt
+if [ -z "$1" ]; then
+	if test -f $PROJECT_FILE; then
+		cat $PROJECT_FILE
 	else
-		echo "There is no '$project_name' project."
+		echo "There is no '$PROJECT' project."
 	fi
 else
-	if [ "$1" = "-" ]; then
-		read "R?Clear the '$project_name' project? [y/n] "
+	if [[ "$1" =~ ^[+-] ]]; then
+		if [ "+" = "$1" ]; then
+			$EDITOR $PROJECT_FILE
+		elif test -f $PROJECT_FILE; then
+			local R
 
-		if [[ "$R" =~ ^[Yy] ]]; then
-			rm $txt
+			if read "R?Delete '$PROJECT' project? [y/n] " && [[ "$R" =~ ^[Yy] ]]; then
+				rm $PROJECT_FILE
+			fi
+		else
+			echo "There is no '$PROJECT' project."
 		fi
-	elif [[ "$1" = "+" ]]; then
-		$ok_editor $txt
+	elif [ ! -z "$2" ]; then
+		touch $PROJECT_FILE && echo "local '$1'='${@:2}'" >> $PROJECT_FILE
 	else
-		touch $txt
-
-		echo "declare $1=$2" >> $txt
+		cat $PROJECT_FILE
 	fi
 fi

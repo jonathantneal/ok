@@ -1,4 +1,1 @@
-declare app=com.sublimetext.3
-declare var=${dir:-$@}
-
-_app
+eval "open -b com.sublimetext.3 \$${1:-dir} ${@:2}"

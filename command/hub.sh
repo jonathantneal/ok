@@ -1,4 +1,1 @@
-declare app=com.github.GitHub
-declare var=${dir:-$@}
-
-_app
+eval "open -b com.github.GitHub \$${1:-dir} ${@:2}"
