@@ -19,7 +19,7 @@ source ~/.ok/ok.sh
 Satisfied? Add it to your bash profile.
 
 ```sh
-echo ';source ~/.ok/ok.sh' > .bash_profile
+echo 'source ~/.ok/ok.sh' >> ~/.bash_profile
 ```
 
 That’s it.
