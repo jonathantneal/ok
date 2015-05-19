@@ -1,8 +1,90 @@
 # ok
 
-**ok** is a script for making super fast bash shortcuts.
+**ok** improves your sanity and productivity by helping you create instant bash shortcuts.
 
-## Let’s install it
+
+
+## Usage
+
+Do you have a project that you keep coming back to?
+
+```sh
+ok set panam ~/Sites/me.local/new-panam-website
+```
+
+Move there anytime from anywhere.
+
+```sh
+ok cd panam
+```
+
+Or open the directory in **Finder**.
+
+```sh
+ok open panam
+```
+
+Or open the directory in **Sublime Text**.
+
+```sh
+ok subl panam
+```
+
+---
+
+Add a local URL for a project.
+
+```sh
+ok set panam local http://panam.dev/
+```
+
+Open it anytime from anywhere.
+
+```
+ok open panam local
+```
+
+Or see how it looks specifically in **Chrome**.
+
+```sh
+ok ch panam local
+```
+
+Or see how it looks specifically in **Firefox**.
+
+```sh
+ok ff panam local
+```
+
+Or see how it looks specifically in **Safari**.
+
+```sh
+ok saf panam local
+```
+
+---
+
+Open a mockup in **Photoshop**.
+
+```sh
+ok shop ~/client-assets/panam/mockup-r3.psd
+```
+
+Or map a mockup to a project.
+
+```sh
+ok set panam shop ~/client-assets/panam/mockup-r3.psd
+```
+
+Open it anytime from anwhere.
+
+```sh
+ok shop panam
+```
+
+
+
+## Installation
 
 First, clone ok into ~/.ok.
 
@@ -10,7 +92,7 @@ First, clone ok into ~/.ok.
 git clone https://github.com/jonathantneal/ok.git ~/.ok
 ```
 
-Now, try it out.
+Try it out.
 
 ```sh
 source ~/.ok/ok.sh
@@ -26,132 +108,50 @@ That’s it.
 
 ---
 
-## Let’s have fun
+## Write a manual
 
-Have Photoshop? There’s a shortcut for it.
-
-```sh
-ok psd
-```
-
-Nifty. And you can also use it to open a file.
+You can write your own manuals for any project. It’s an easy and quick way to remember things.
 
 ```sh
-ok psd ~/super-duper-website/mockup.psd
+ok man panam origin/develop is http://dev.panam.example.com/
+ok man panam origin/preview is http://dev.staging.example.com/
 ```
 
-But, let’s make it faster by mapping this mockup to a project.
+Read them back later.
 
 ```sh
-ok set myweb psd ~/super-duper-website/mockup.psd
+ok man panam
 ```
 
-Now we can open the mockup anytime, anywhere!
-
-```sh
-ok psd myweb
+```
+origin/develop is http://dev.panam.example.com/
+origin/preview is http://dev.staging.example.com/
 ```
 
-That was fun.
 
----
 
-## Let’s add our website
-
-Add the local URL for your project
-
-```sh
-ok set myweb local http://my-super-duper-website.dev/
-```
-
-Now you can open it anytime, anywhere!
-
-```sh
-ok open myweb local
-```
-
-Have Firefox? Let’s see how it looks there.
-
-```sh
-ok ff myweb local
-```
-
-Nice, how about Safari?
-
-```sh
-ok saf myweb local
-```
-
----
-
-## Let’s add a project
-
-First, let’s create a map to the directory of our project.
-
-```sh
-ok set myweb dir ~/projects/my-super-duper-site
-```
-
-Now we can move there anytime, anywhere!
-
-```sh
-ok cd myweb
-```
-
-Use Sublime Text? We can open the directory in there, too.
-
-```sh
-ok subl myweb
-```
-
-This will be handy!
-
----
-
-## Let’s write a manual
-
-You can write your own manuals for projects. It’s a good, quick way to remember things.
-
-```sh
-ok man myweb "origin/develop is http://d.example.com/"
-ok man myweb "origin/preview is http://staging.example.com/"
-```
-
-And you can read them back later
-
-```sh
-ok man myweb
-```
-
-Which will produce:
-
-```
-origin/develop is http://d.example.com/
-origin/preview is http://staging.example.com/
-```
-
-I hope this makes life sweeter for you.
-
----
-
-## Let’s get nitty gritty
+## Commands
 
 **ok** comes with a few commands and shortcuts to common developer apps.
 
 **Applications**
 
-- **ch**: Google Chrome
-- **ff**: Mozilla Firefox
-- **hub**: GitHub
-- **psd**: Adobe Photoshop
+- **ch**: Chrome
+- **ff**: Firefox
+- **gh**: GitHub
+- **preview**: Preview
+- **saf**: Safari
+- **shop**: Photoshop
+- **subl**: Sublime
 
 **Commands**
 
 - **cd**: Move into a project directory
-- **open**: Open a project or project site
-- **man**: Write a manual for a project
-
-**ok Tools**
-
-- **set**: Sets a property on a project
 - **config**: Edit or create a command in **ok**
+- **open**: Open a project, asset, or site
+- **man**: Read or write a manual for a project
+- **set**: Set a property on a project
+
+---
+
+I hope this makes life sweeter for you.
