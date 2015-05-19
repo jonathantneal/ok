@@ -1,1 +1,1 @@
-eval "open -b com.adobe.Photoshop \$${1:-psd} ${@:2}"
+eval "open -b com.adobe.Photoshop \$${1:-shop} ${@:2}"
