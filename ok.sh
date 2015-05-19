@@ -9,6 +9,7 @@ function ok {
 	local MANUAL_FILE="$DIRECTORY/manual/${2:-ok}.txt"
 	local COMMAND_FILE="$DIRECTORY/command/$COMMAND.sh"
 	local PROJECT_FILE="$DIRECTORY/project/$PROJECT.sh"
+
 	local COMMAND_SCRIPT
 	local PROJECT_SCRIPT
 
