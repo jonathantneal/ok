@@ -10,10 +10,10 @@ function ok {
 	local COMMAND_FILE="$DIRECTORY/command/$COMMAND.sh"
 	local PROJECT_FILE="$DIRECTORY/project/$PROJECT.sh"
 
-	local COMMAND_SCRIPT
-	local PROJECT_SCRIPT
-
 	function READ {
+		local COMMAND_SCRIPT
+		local PROJECT_SCRIPT
+
 		if test -f $1; then
 			declare -g "$2"="$(cat $1)"
 
